@@ -1,6 +1,6 @@
 package org.example.enity;
 
-public class Creature extends SimulationObject {
+abstract public class Creature extends SimulationObject {
     protected int hp;
     protected int speed;
 
@@ -9,4 +9,6 @@ public class Creature extends SimulationObject {
         this.hp = hp;
         this.speed = speed;
     }
+
+    abstract public void makeMove();
 }

@@ -1,6 +1,6 @@
 package org.example.enity;
 
-public class SimulationObject {
+abstract public class SimulationObject {
     public Coordinates coordinates;
 
     public SimulationObject(Coordinates coordinates) {

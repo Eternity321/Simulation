@@ -1,5 +1,8 @@
 package org.example.enity;
 
+import org.example.enity.creatures.*;
+import org.example.enity.staticobjects.*;
+
 import java.util.HashMap;
 import java.util.Random;
 import java.util.Scanner;
@@ -21,7 +24,7 @@ public class World {
     }
 
     public SimulationObject getSimulationObject(Coordinates coordinates){
-        return simulationObjects.get(coordinates);
+        return simulationObjects.getOrDefault(coordinates, null);
     }
 
     public void setWorldSize(){
@@ -39,8 +42,30 @@ public class World {
         for (int i = 0; i < countObjects; i++) {
             int randomX = random.nextInt(width);
             int randomY = random.nextInt(height);
+            int entityType = random.nextInt(5);
             Coordinates coordinates = new Coordinates(randomX, randomY);
-            SimulationObject simulationObject = new SimulationObject(coordinates);
+
+            SimulationObject simulationObject;
+            switch(entityType) {
+                case 0:
+                    simulationObject = new Herbivore(coordinates, 100, 1);
+                    break;
+                case 1:
+                    simulationObject = new Predator(coordinates, 150, 2);
+                    break;
+                case 2:
+                    simulationObject = new Tree(coordinates, "tree");
+                    break;
+                case 3:
+                    simulationObject = new Rock(coordinates, "rock");
+                    break;
+                case 4:
+                    simulationObject = new Grass(coordinates, "grass");
+                    break;
+                default:
+                    simulationObject = null;
+                    break;
+            }
             setSimulationObject(coordinates, simulationObject);
         }
     }

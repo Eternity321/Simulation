@@ -1,5 +1,9 @@
 package org.example.enity;
 
+import org.example.enity.creatures.*;
+import org.example.enity.staticobjects.*;
+
+
 public class WorldConsoleRenderer   {
 
     public static final String ANSI_RESET = "\u001B[0m";
@@ -35,20 +39,22 @@ public class WorldConsoleRenderer   {
         return colorizeSprite("   ");
     }
 
-    private String selectEmojiSpriteFromSimulationObject(SimulationObject simulationObject){
-        switch (simulationObject.getClass().getName()){
-            case "Herbivore":
-                return "\uD83D\uDC04";
-            case "Predator":
-                return "\uD83D\uDC06";
-            case "Grass":
-                return "\uD83C\uDF3E";
-            case "Rock":
-                return "⛰";
-            case "Tree":
-                return "\uD83C\uDF34";
+    private String selectEmojiSpriteFromSimulationObject(SimulationObject simulationObject) {
+        if (simulationObject == null) {
+            return " ";
+        } else if (simulationObject instanceof Herbivore) {
+            return "H";
+        } else if (simulationObject instanceof Predator) {
+            return "P";
+        } else if (simulationObject instanceof Grass) {
+            return "G";
+        } else if (simulationObject instanceof Rock) {
+            return "R";
+        } else if (simulationObject instanceof Tree) {
+            return "T";
+        } else {
+            return " ";
         }
-        return "⛰";
     }
 
     private String getSimulationObjectSprite(SimulationObject simulationObject) {
