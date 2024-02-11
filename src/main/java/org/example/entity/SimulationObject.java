@@ -1,4 +1,4 @@
-package org.example.enity;
+package org.example.entity;
 
 abstract public class SimulationObject {
     public Coordinates coordinates;

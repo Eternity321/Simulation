@@ -1,4 +1,4 @@
-package org.example.enity;
+package org.example.entity;
 
 public class StaticObject extends SimulationObject {
     private String objectType;

@@ -1,7 +1,7 @@
-package org.example.enity;
+package org.example.entity;
 
-import org.example.enity.creatures.*;
-import org.example.enity.staticobjects.*;
+import org.example.entity.creatures.*;
+import org.example.entity.staticobjects.*;
 
 import java.util.HashMap;
 import java.util.Random;
@@ -14,7 +14,27 @@ public class World {
     private int countObjects = 0;
     private HashMap<Coordinates, SimulationObject> simulationObjects = new HashMap<>();
 
-    public void setSimulationObject(Coordinates coordinates, SimulationObject simulationObject){
+    public void setWorldSize() {
+        Scanner scanner = new Scanner(System.in);
+        final int minWidth = 10;
+        final int maxWidth = 70;
+        final int minHeight = 10;
+        final int maxHeight = 100;
+
+        do {
+            System.out.print("Enter width of the world (10-70): ");
+            width = scanner.nextInt();
+        } while (width < minWidth || width > maxWidth);
+
+        do {
+            System.out.print("Enter height of the world (10-100): ");
+            height = scanner.nextInt();
+        } while (height < minHeight || height > maxHeight);
+
+        countObjects = Math.round((width * height) / 4);
+    }
+
+    public void addSimulationObject(Coordinates coordinates, SimulationObject simulationObject){
         simulationObject.coordinates = coordinates;
         simulationObjects.put(coordinates, simulationObject);
     }
@@ -27,18 +47,8 @@ public class World {
         return simulationObjects.getOrDefault(coordinates, null);
     }
 
-    public void setWorldSize(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter width of the world: ");
-        width = scanner.nextInt();
-        System.out.print("Enter height of the world: ");
-        height = scanner.nextInt();
 
-        countObjects = Math.round((width * height) / 4);
-    }
-
-
-    public void setupStartSimulationObjectsPositions(){
+    public void setupRandomStartSimulationObjectsPositions(){
         for (int i = 0; i < countObjects; i++) {
             int randomX = random.nextInt(width);
             int randomY = random.nextInt(height);
@@ -66,7 +76,7 @@ public class World {
                     simulationObject = null;
                     break;
             }
-            setSimulationObject(coordinates, simulationObject);
+            addSimulationObject(coordinates, simulationObject);
         }
     }
     public int getHeight() {

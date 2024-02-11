@@ -1,7 +1,7 @@
-package org.example.enity.creatures;
+package org.example.entity.creatures;
 
-import org.example.enity.Coordinates;
-import org.example.enity.Creature;
+import org.example.entity.Coordinates;
+import org.example.entity.Creature;
 
 public class Herbivore extends Creature{
     public Herbivore(Coordinates coordinates, int hp, int speed) {

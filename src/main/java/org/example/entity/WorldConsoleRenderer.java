@@ -1,7 +1,7 @@
-package org.example.enity;
+package org.example.entity;
 
-import org.example.enity.creatures.*;
-import org.example.enity.staticobjects.*;
+import org.example.entity.creatures.*;
+import org.example.entity.staticobjects.*;
 
 
 public class WorldConsoleRenderer   {
