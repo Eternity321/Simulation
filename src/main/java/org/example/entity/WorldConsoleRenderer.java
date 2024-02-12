@@ -36,22 +36,22 @@ public class WorldConsoleRenderer   {
     }
 
     private String getSpriteForEmptySquare(Coordinates coordinates){
-        return colorizeSprite("   ");
+        return colorizeSprite(" \uD83D\uDFEB ");
     }
 
     private String selectEmojiSpriteFromSimulationObject(SimulationObject simulationObject) {
         if (simulationObject == null) {
             return " ";
         } else if (simulationObject instanceof Herbivore) {
-            return "H";
+            return "\uD83D\uDC04";
         } else if (simulationObject instanceof Predator) {
-            return "P";
+            return "\uD83D\uDC06";
         } else if (simulationObject instanceof Grass) {
-            return "G";
+            return "\uD83C\uDF40";
         } else if (simulationObject instanceof Rock) {
-            return "R";
+            return "\uD83E\uDEA8";
         } else if (simulationObject instanceof Tree) {
-            return "T";
+            return "\uD83C\uDF34";
         } else {
             return " ";
         }

@@ -17,12 +17,12 @@ public class World {
     public void setWorldSize() {
         Scanner scanner = new Scanner(System.in);
         final int minWidth = 10;
-        final int maxWidth = 70;
+        final int maxWidth = 52;
         final int minHeight = 10;
         final int maxHeight = 100;
 
         do {
-            System.out.print("Enter width of the world (10-70): ");
+            System.out.print("Enter width of the world (10-52): ");
             width = scanner.nextInt();
         } while (width < minWidth || width > maxWidth);
 
