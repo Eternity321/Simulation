@@ -1,15 +1,17 @@
-package org.example.entity;
+package org.example;
 
+import org.example.entity.Coordinates;
+import org.example.entity.SimulationObject;
+import org.example.entity.World;
 import org.example.entity.creatures.*;
 import org.example.entity.staticobjects.*;
 
 
-public class WorldConsoleRenderer   {
-
+public class WorldConsoleRenderer {
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_BACKGROUND_COLOR = "\u001B[0;100m";
 
-    public void render(World world){
+    public void render(World world) {
         int height = world.getHeight();
         int width = world.getWidth();
 
@@ -17,7 +19,7 @@ public class WorldConsoleRenderer   {
             String line = "";
             for (int x = 0; x < width; x++) {
                 Coordinates coordinates = new Coordinates(x, y);
-                if(world.isSquareEmpty(coordinates)) {
+                if (world.isSquareEmpty(coordinates)) {
                     line += getSpriteForEmptySquare(coordinates);
                 } else {
                     line += getSimulationObjectSprite(world.getSimulationObject(coordinates));
@@ -29,13 +31,13 @@ public class WorldConsoleRenderer   {
         }
     }
 
-    private String colorizeSprite(String sprite){
+    private String colorizeSprite(String sprite) {
         String result = sprite;
         result = ANSI_BACKGROUND_COLOR + result;
         return result;
     }
 
-    private String getSpriteForEmptySquare(Coordinates coordinates){
+    private String getSpriteForEmptySquare(Coordinates coordinates) {
         return colorizeSprite(" \uD83D\uDFEB ");
     }
 

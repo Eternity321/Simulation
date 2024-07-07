@@ -2,17 +2,13 @@ package org.example.entity;
 
 import org.example.entity.creatures.*;
 import org.example.entity.staticobjects.*;
-
-import java.util.HashMap;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class World {
-    protected int width;
-    protected int height;
-    Random random = new Random();
-    private int countObjects = 0;
-    private HashMap<Coordinates, SimulationObject> simulationObjects = new HashMap<>();
+    private int width;
+    private int height;
+    private final Random random = new Random();
+    private final Map<Coordinates, SimulationObject> simulationObjects = new HashMap<>();
 
     public void setWorldSize() {
         Scanner scanner = new Scanner(System.in);
@@ -30,60 +26,97 @@ public class World {
             System.out.print("Enter height of the world (10-100): ");
             height = scanner.nextInt();
         } while (height < minHeight || height > maxHeight);
-
-        countObjects = Math.round((width * height) / 4);
     }
 
-    public void addSimulationObject(Coordinates coordinates, SimulationObject simulationObject){
-        simulationObject.coordinates = coordinates;
+    public void addSimulationObject(Coordinates coordinates, SimulationObject simulationObject) {
         simulationObjects.put(coordinates, simulationObject);
     }
 
-    public boolean isSquareEmpty(Coordinates coordinates){
+    public boolean isSquareEmpty(Coordinates coordinates) {
         return !simulationObjects.containsKey(coordinates);
     }
 
-    public SimulationObject getSimulationObject(Coordinates coordinates){
+    public SimulationObject getSimulationObject(Coordinates coordinates) {
         return simulationObjects.getOrDefault(coordinates, null);
     }
 
+    public Collection<SimulationObject> getAllSimulationObjects() {
+        return simulationObjects.values();
+    }
 
-    public void setupRandomStartSimulationObjectsPositions(){
+    public void setupRandomStartSimulationObjectsPositions() {
+        int countObjects = Math.round((width * height) / 4);
         for (int i = 0; i < countObjects; i++) {
             int randomX = random.nextInt(width);
             int randomY = random.nextInt(height);
-            int entityType = random.nextInt(5);
-            Coordinates coordinates = new Coordinates(randomX, randomY);
-
-            SimulationObject simulationObject;
-            switch(entityType) {
-                case 0:
-                    simulationObject = new Herbivore(coordinates, 100, 1);
-                    break;
-                case 1:
-                    simulationObject = new Predator(coordinates, 150, 2);
-                    break;
-                case 2:
-                    simulationObject = new Tree(coordinates, "tree");
-                    break;
-                case 3:
-                    simulationObject = new Rock(coordinates, "rock");
-                    break;
-                case 4:
-                    simulationObject = new Grass(coordinates, "grass");
-                    break;
-                default:
-                    simulationObject = null;
-                    break;
-            }
-            addSimulationObject(coordinates, simulationObject);
+            Coordinates coordinates = new Coordinates(randomY, randomX);
+            SimulationObject simulationObject = generateRandomObject(coordinates);
+            simulationObjects.put(coordinates, simulationObject);
         }
     }
+
+    private SimulationObject generateRandomObject(Coordinates coordinates) {
+        int entityType = random.nextInt(5);
+        switch (entityType) {
+            case 0:
+                return new Herbivore(coordinates, 100, 1, this);
+            case 1:
+                return new Predator(coordinates, 150, 2, this);
+            case 2:
+                return new Tree(coordinates, "tree");
+            case 3:
+                return new Rock(coordinates, "rock");
+            case 4:
+                return new Grass(coordinates, "grass");
+            default:
+                return null;
+        }
+    }
+
     public int getHeight() {
         return height;
     }
 
     public int getWidth() {
         return width;
+    }
+
+    public void simulateStep() {
+        List<SimulationObject> objects = new ArrayList<>(simulationObjects.values());
+        for (SimulationObject obj : objects) {
+            if (obj instanceof Creature) {
+                Creature creature = (Creature) obj;
+                if (creature.isAlive()) {
+                    creature.makeMove();
+                }
+            }
+        }
+    }
+
+    public void moveSimulationObject(Creature creature, Coordinates newCoordinates) {
+        if (simulationObjects.containsKey(newCoordinates)) {
+            SimulationObject objectAtNewCoordinates = simulationObjects.get(newCoordinates);
+            if (objectAtNewCoordinates instanceof Creature) {
+                Creature otherCreature = (Creature) objectAtNewCoordinates;
+                if (otherCreature.isAlive()) {
+                }
+            }
+        }
+        simulationObjects.remove(creature.coordinates);
+        creature.coordinates = newCoordinates;
+        simulationObjects.put(newCoordinates, creature);
+    }
+
+    public boolean isSimulationOver() {
+        boolean herbivoresAlive = false;
+        boolean predatorsAlive = false;
+        for (SimulationObject obj : simulationObjects.values()) {
+            if (obj instanceof Herbivore) {
+                herbivoresAlive = true;
+            } else if (obj instanceof Predator) {
+                predatorsAlive = true;
+            }
+        }
+        return !herbivoresAlive || !predatorsAlive;
     }
 }

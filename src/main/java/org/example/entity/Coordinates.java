@@ -3,10 +3,10 @@ package org.example.entity;
 import java.util.Objects;
 
 public class Coordinates {
-    public final Integer x; //file
-    public final Integer y; //rank
+    public final int x; //file
+    public final int y; //rank
 
-    public Coordinates(Integer y, Integer x) {
+    public Coordinates(int y, int x) {
         this.y = y;
         this.x = x;
     }
