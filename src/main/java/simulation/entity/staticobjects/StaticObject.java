@@ -1,7 +1,7 @@
-package org.example.entity.staticobjects;
+package simulation.entity.staticobjects;
 
-import org.example.entity.Coordinates;
-import org.example.entity.SimulationObject;
+import simulation.entity.Coordinates;
+import simulation.entity.SimulationObject;
 
 public abstract class StaticObject extends SimulationObject {
     private String objectType;

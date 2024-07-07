@@ -1,9 +1,9 @@
-package org.example.entity.creatures;
+package simulation.entity.creatures;
 
-import org.example.AStarPathfinding;
-import org.example.entity.Coordinates;
-import org.example.entity.SimulationObject;
-import org.example.entity.World;
+import simulation.AStarPathfinding;
+import simulation.entity.Coordinates;
+import simulation.entity.SimulationObject;
+import simulation.entity.World;
 
 import java.util.List;
 

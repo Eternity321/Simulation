@@ -1,6 +1,6 @@
-package org.example.entity.staticobjects;
+package simulation.entity.staticobjects;
 
-import org.example.entity.Coordinates;
+import simulation.entity.Coordinates;
 
 public class Tree extends StaticObject {
     public Tree(Coordinates coordinates, String objectType) {

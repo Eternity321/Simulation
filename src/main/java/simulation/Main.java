@@ -1,6 +1,6 @@
-package org.example;
+package simulation;
 
-import org.example.entity.World;
+import simulation.entity.World;
 
 import java.util.Scanner;
 

@@ -1,10 +1,15 @@
-package org.example;
+package simulation;
 
-import org.example.entity.Coordinates;
-import org.example.entity.SimulationObject;
-import org.example.entity.World;
+import simulation.entity.Coordinates;
+import simulation.entity.SimulationObject;
+import simulation.entity.World;
 import org.example.entity.creatures.*;
 import org.example.entity.staticobjects.*;
+import simulation.entity.creatures.Herbivore;
+import simulation.entity.creatures.Predator;
+import simulation.entity.staticobjects.Grass;
+import simulation.entity.staticobjects.Rock;
+import simulation.entity.staticobjects.Tree;
 
 
 public class WorldConsoleRenderer {

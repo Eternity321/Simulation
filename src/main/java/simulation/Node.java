@@ -1,6 +1,6 @@
-package org.example;
+package simulation;
 
-import org.example.entity.Coordinates;
+import simulation.entity.Coordinates;
 
 public class Node {
     private Coordinates coordinates;

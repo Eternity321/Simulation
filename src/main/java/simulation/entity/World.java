@@ -1,7 +1,14 @@
-package org.example.entity;
+package simulation.entity;
 
 import org.example.entity.creatures.*;
 import org.example.entity.staticobjects.*;
+import simulation.entity.creatures.Creature;
+import simulation.entity.creatures.Herbivore;
+import simulation.entity.creatures.Predator;
+import simulation.entity.staticobjects.Grass;
+import simulation.entity.staticobjects.Rock;
+import simulation.entity.staticobjects.Tree;
+
 import java.util.*;
 
 public class World {

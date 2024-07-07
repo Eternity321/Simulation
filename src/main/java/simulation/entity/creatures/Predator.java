@@ -1,9 +1,8 @@
-package org.example.entity.creatures;
+package simulation.entity.creatures;
 
-import org.example.entity.Coordinates;
-import org.example.entity.SimulationObject;
-import org.example.entity.staticobjects.Grass;
-import org.example.entity.World;
+import simulation.entity.Coordinates;
+import simulation.entity.SimulationObject;
+import simulation.entity.World;
 
 public class Predator extends Creature {
     public Predator(Coordinates coordinates, int hp, int speed, World world) {

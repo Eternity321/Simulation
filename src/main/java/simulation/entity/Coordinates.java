@@ -1,4 +1,4 @@
-package org.example.entity;
+package simulation.entity;
 
 import java.util.Objects;
 

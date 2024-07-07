@@ -1,7 +1,7 @@
-package org.example;
+package simulation;
 
-import org.example.entity.Coordinates;
-import org.example.entity.World;
+import simulation.entity.Coordinates;
+import simulation.entity.World;
 
 import java.util.*;
 

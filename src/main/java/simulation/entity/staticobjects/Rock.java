@@ -1,6 +1,6 @@
-package org.example.entity.staticobjects;
+package simulation.entity.staticobjects;
 
-import org.example.entity.Coordinates;
+import simulation.entity.Coordinates;
 
 public class Rock extends StaticObject {
     public Rock(Coordinates coordinates, String objectType) {
